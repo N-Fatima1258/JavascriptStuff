@@ -102,4 +102,5 @@ arrFive.push('3') //PACKED_ELEMENTS
 // aik dfa apny downgrade kr dia , to dobara ap upgrade nhi krskty. Chahy ap usy remoev bhi krdo
 
 
-// NOTE: jitny bhi apko bedefault methods ya loops waghrra mil rhy heii ap unko prefer kryn . Ap apny trf se jo loops ya methods bnaty hei unki jagah default methods use kryn because  it is possible k apny usy 2 ya 4 cases k liye optimixe kia ho lykin browser ny usy bht se cases k liye optimize kr rakha hota hai
+// NOTESSSSS: jitny bhi apko bedefault methods ya loops waghrra mil rhy heii ap unko prefer kryn . Ap apny trf se jo loops ya methods bnaty hei unki jagah default methods use kryn because  it is possible k apny usy 2 ya 4 cases k liye optimixe kia ho lykin browser ny usy bht se cases k liye optimize kr rakha hota hai
+
