@@ -1,3 +1,8 @@
+
+<!-- ***Document objects se hi to mil k bnta hai. head, body, title all are objects.
+ 
+ *** yh sirf document type btata hai k apka doc type html hai . Actually mai document start is tag (
+<html lang="en">) se hi hota hai  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +18,7 @@
 </head>
 <body class="bg-black">
     <div >
-        <h1  id="title" class="heading">DOM learning on Chai aur code <span style="display: none;">test text</span></h1>
+        <h1  id="title" class="heading">DOM learning on Chai aur code <span style="display: none;"> test text</span></h1>   
         <h2>Lorem ipsum dolor sit.</h2>
         <h2>Lorem ipsum dolor sit.</h2>
         <h2>Lorem ipsum dolor sit.</h2>
@@ -21,7 +26,7 @@
         <input type="password" name="" id="">
 
         <ul>
-            <li class="list-item">one</li>
+            <li class="list-item">o ne</li>
             <li class="list-item">two</li>
             <li class="list-item">three</li>
             <li class="list-item">four</li>
@@ -29,3 +34,77 @@
     </div>
 </body>
 </html>
+
+
+<!-- DOM: jo apka document hai wo kis model se bna hua hai, kia uska stucture hai, page kese dikhta hai  -->
+ <!-- window k ander document, docume nt k ander html......... -->
+
+
+
+<!-- The Document Object Model (DOM) is a programming interface for web documents. It represents the structure of a document as a tree of objects, where each object corresponds to a part of the document (such as elements, attributes, and text). The DOM allows programming languages like JavaScript to interact with and manipulate the content, structure, and style of web pages dynamically.
+
+Key concepts of the DOM include:
+
+Document: The root of the DOM tree, representing the entire HTML or XML document.
+Elements: The nodes in the DOM tree, representing HTML or XML elements (e.g., <div>, <p>, <a>).
+Attributes: Properties of elements, like class, id, and href.
+Text Nodes: The text content inside elements.
+With the DOM, you can:
+
+Access and modify the content of elements (e.g., change the text inside a paragraph).
+Change the structure of the document (e.g., add, remove, or rearrange elements).
+Modify the styles of elements (e.g., change CSS properties).
+-->
+
+
+
+
+<!-- Open any wikipedia or web document in googleand then in console log document and you can access amny things using dot notation e.g. console.log(document.links) => displays all the links present in that particular web page-->
+
+<!-- HTML collection, node collection are not arrays but they can be converted to arrays. They are different from arrays. BEcause they are somewhat like arrays, you can do console.log(document.links[3]) -->
+
+<!-- document.links is not a method; it is a property of the document object in the DOM.
+document.getElementById is a method that retrieves an element by its ID.
+
+TO DIFFERNTIATE:
+Properties: Accessed directly and represent data or collections of data.
+Methods: Called as functions and perform actions.
+
+Properties: No parentheses needed.
+Methods: Parentheses are used.
+
+* By understanding these distinctions, you can identify whether a given part of the DOM API is a property or a method based on its usage and syntax.
+
+-->
+
+
+<!-- instead of  reatingf a js file and adding the script into html file, you can directly create an html file and open it with live server and then use console -->
+
+
+
+
+<!-- DIFFERENCES:
++++innerText:
+
+Represents the "rendered" text content of a node and its descendants.
+Only includes text that is visible to the user (e.g., it excludes hidden elements).
+Triggers a reflow to ensure it only captures visible text.
+eg:
+DOM learning on Chai aur code
++++textContent:
+
+Represents the text content of a node and its descendants.
+Includes all text, regardless of visibility (e.g., includes hidden elements).
+Does not trigger a reflow, so it's usually faster than innerText.
+eg:
+DOM learning on Chai aur code test text
+++++innerHTML:
+
+Represents the HTML content of a node.
+Includes all HTML tags and content within the element.
+Allows for reading and writing HTML content.
+eg:
+DOM learning on Chai aur code <span style="display: none;"> test text</span>  
+-->
+
+ 

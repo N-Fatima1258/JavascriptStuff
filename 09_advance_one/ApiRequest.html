@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body style="background-color: #212121;">
-    0	UNSENT	Client has been created. open() not called yet.
+    <!-- 0	UNSENT	Client has been created. open() not called yet.
 1	OPENED	open() has been called.
 2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
 3	LOADING	Downloading; responseText holds partial data.
-4	DONE	The operation is complete.
+4	DONE	The operation is complete. -->
 </body>
 <script>
     const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
@@ -27,3 +27,161 @@
     xhr.send();
 </script>
 </html>
+
+<!-- Purpose: JSON.parse is used to convert JSON strings into JavaScript objects.
+Syntax: JSON.parse(text[, reviver])
+Basic Usage: Convert JSON string to JavaScript object.
+Reviver Function: Optional function to transform the parsed value.
+Error Handling: Use try...catch to handle syntax errors in JSON strings. -->
+
+
+
+<!-- 
+An API (Application Programming Interface) is not a language. Instead, it is a set of rules and protocols that allows different software applications to communicate with each other. APIs define the methods and data structures that developers can use to interact with a service, software, or hardware component. 
+
+
+An API specifies how software components should interact. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, and the conventions to follow. APIs are used in various contexts, including web development, operating systems, databases, hardware, and software libraries.
+
+
+APIs: web apis, database apis, library apis, operating system apis
+
+*****
+Other Database Systems
+Relational Databases: For traditional relational databases like MySQL, PostgreSQL, and Oracle, SQL is used extensively, and APIs like JDBC and ODBC interact with these databases using SQL.
+NoSQL Databases: For NoSQL databases like MongoDB or Redis, the interaction might not use SQL. For example, MongoDB uses its own query language and methods, and Redis uses commands specific to its key-value store.
+Conclusion
+In summary, database APIs often use SQL to perform operations on relational databases. The API provides the means to send SQL queries to the database and handle the results, bridging the gap between the application and the database system.
+
+
+****-->
+
+
+
+
+
+
+<!--
+ Document is not the part of core js.
+ console.log is a debugging tool. Its the developer tool of browser. yh javascript ka runtime inject krta hai.
+ V8 engine is written in c++. v8 engine runs javascript. JS actually run c++ se hi hoti hai
+
+
+
+ The V8 engine is an open-source JavaScript engine developed by Google. It's used in various environments to execute JavaScript code, most notably in Google Chrome and Node.js. Here's a detailed explanation of how the V8 engine works and its key features:
+
+Overview
+Purpose: V8 compiles JavaScript code into native machine code before executing it, which helps to improve performance and efficiency.
+Usage: It powers the JavaScript execution in Google Chrome and other Chromium-based browsers, as well as in Node.js, a server-side JavaScript runtime.
+
+Summary
+The V8 engine is a powerful and efficient JavaScript engine that significantly enhances the performance of JavaScript execution. By combining JIT compilation, advanced optimization techniques, and garbage collection, V8 provides a robust runtime environment for executing JavaScript in both browsers and server-side applications.
+-->
+
+
+
+
+
+
+
+<!-- EXPLANATION OF THE ABOVE CODE
+Let's break down this code step-by-step to understand how it works:
+
+```javascript
+const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+const xhr = new XMLHttpRequest();
+
+xhr.open('GET', requestUrl);
+
+xhr.onreadystatechange = function() {
+    console.log(xhr.readyState);
+    if (xhr.readyState === 4) {
+        const data = JSON.parse(this.responseText);
+        console.log(typeof data);
+        console.log(data.followers);
+    }
+};
+
+xhr.send();
+```
+
+### Explanation
+
+1. **Define the Request URL**
+   ```javascript
+   const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+   ```
+   - This is the URL from which the data is being requested. In this case, it is an endpoint from the GitHub API that returns information about a user named `hiteshchoudhary`.
+
+2. **Create a New XMLHttpRequest Object**
+   ```javascript
+   const xhr = new XMLHttpRequest();
+   ```
+   - This creates a new instance of `XMLHttpRequest`, an API in the form of an object used to interact with servers. It is used to send HTTP or HTTPS requests to a web server and load the server's response.
+
+3. **Initialize a Request**
+   ```javascript
+   xhr.open('GET', requestUrl);
+   ```
+   - The `open` method initializes the request. It specifies the HTTP method (`GET` in this case) and the URL to which the request is sent.
+   - `GET` method is used to retrieve data from the specified URL.
+
+4. **Set up a Function to Handle the Response**
+   ```javascript
+   xhr.onreadystatechange = function() {
+       console.log(xhr.readyState);
+       if (xhr.readyState === 4) {
+           const data = JSON.parse(this.responseText);
+           console.log(typeof data);
+           console.log(data.followers);
+       }
+   };
+   ```
+   - `onreadystatechange` is an event handler that is called whenever the `readyState` property of the `XMLHttpRequest` changes.
+   - `xhr.readyState` is a property that indicates the state of the `XMLHttpRequest`. It ranges from 0 to 4:
+     - `0`: UNSENT – The request is not initialized.
+     - `1`: OPENED – The request has been set up.
+     - `2`: HEADERS_RECEIVED – The headers have been received.
+     - `3`: LOADING – The response is being downloaded.
+     - `4`: DONE – The operation is complete.
+   - The function logs the current `readyState` to the console.
+   - When `readyState` is `4` (DONE), it means the request is complete, and the response is fully received.
+     - `this.responseText` contains the response from the server as a string.
+     - `JSON.parse(this.responseText)` converts the JSON string into a JavaScript object.
+     - `console.log(typeof data);` logs the type of the `data` variable, which will be `"object"`.
+     - `console.log(data.followers);` logs the number of followers the user `hiteshchoudhary` has on GitHub.
+
+5. **Send the Request**
+   ```javascript
+   xhr.send();
+   ```
+   - The `send` method sends the request to the server.
+
+### Summary
+- **Purpose**: This script sends an HTTP GET request to the GitHub API to fetch information about a user.
+- **Process**:
+  1. Create an `XMLHttpRequest` object.
+  2. Initialize a request with the `open` method.
+  3. Set up a function to handle the response.
+  4. Send the request.
+- **Handling the Response**:
+  - The `onreadystatechange` event handler checks the `readyState`.
+  - When the request is complete (`readyState === 4`), it parses the JSON response and logs the user's number of followers. -->
+
+
+<!-- 
+  **********console.log: 
+  console.log is a function provided by the JavaScript environment (such as a web browser or Node.js) that allows developers to print messages and values to the console. The V8 engine, being the JavaScript engine used in environments like Google Chrome and Node.js, is responsible for executing the JavaScript code that includes console.log.
+
+  V8 executes the JavaScript code that uses console.log, but it doesn’t directly manage how console.log outputs data. It simply calls the console.log function as part of executing the code.
+The actual logging behavior is handled by the environment hosting V8, which directs the output to the browser’s console or Node.js’s terminal.
+
+
+  console.log: A method provided by the host environment (browser or Node.js) for outputting messages to the console.
+V8 Engine: Executes the JavaScript code that includes console.log, but does not handle the actual logging.
+Host Environment: Manages the implementation and behavior of console.log, interfacing with V8 to process and output the data.
+In essence, console.log is a feature of the JavaScript runtime environment, while V8’s role is to execute the JavaScript code that includes this function call 
+
+
+++++++++++++++++++++++++++++ MUst read it ****************************
+
+https://medium.com/swlh/console-log-isnt-in-the-javascript-language-2b0f24d57397-->

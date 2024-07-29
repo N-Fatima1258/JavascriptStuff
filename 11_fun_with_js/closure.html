@@ -11,6 +11,13 @@
 </body>
 
     <script>
+
+        // ************lexical scoping
+        // In JavaScript, lexical scope is the concept of determining the scope of a variable based on its declaration. This means that the scope of a variable is determined by the block of code in which it is declared, not by the block of code in which it is used.
+
+
+
+
     // function init() {
     //     let name = "Mozilla"; 
     //     function displayName() {
@@ -38,13 +45,58 @@
     // outer()
     // console.log("TOO OUTER", username);
 
+    /*
+    
+    Execution Context
+When JavaScript code runs, it creates an execution context, which contains the environment in which the current code is being executed. Each function call creates a new execution context.
+
+Components of Execution Context
+Variable Object (VO): Contains function arguments, inner variable and function declarations.
+Scope Chain: Contains the variable objects of all the parent execution contexts.
+this: Refers to the context object for the current code.
+Behind the Scenes with Execution Context
+Let's break down the previous example with an understanding of execution contexts and scope chains:
+
+Global Execution Context
+Creation Phase:
+
+outerFunction is defined in the global execution context.
+Execution Phase:
+
+outerFunction is called, creating a new execution context for outerFunction.
+outerFunction Execution Context
+Creation Phase:
+
+The outerVariable is defined.
+innerFunction is defined within outerFunction.
+Execution Phase:
+
+outerVariable is assigned the value 'I am outside!'.
+innerFunction is called, creating a new execution context for innerFunction.
+innerFunction Execution Context
+Creation Phase:
+
+The scope chain is created, containing:
+innerFunction's variable object.
+outerFunction's variable object.
+The global execution context's variable object.
+Execution Phase:
+
+The console.log(outerVariable) statement is executed.
+JavaScript engine looks up the scope chain and finds outerVariable in the outerFunction's variable object, logging 'I am outside!' to the console
+    */
+
+//***************closure
+// function ka scope tb tk rehta hai jb tk wo execute hota hai. function execute ho gaya mtlb scope khtm ho gaya
+// although apny functional execution context hta dia hai lykin phir memory ka role ajata hai
+
 
     // function makeFunc() {
     //     const name = "Mozilla";
     //     function displayName() {
     //         console.log(name);
     //     }
-    //     return displayName;
+    //     return displayName; // sirf displayName nhi jay ga , uska outer function agr exist krta hai to uska  bhi pora scope  jay ga kio k lexical scoping to hai hi. Lexical scoping ki hi wajah se wo jata hai. sirf displayName ka execution context nhi return ho rha blk uska pora lexical scope return ho rha hai
     // }
 
     // const myFunc = makeFunc();
@@ -59,12 +111,14 @@
         //     document.body.style.backgroundColor = `green`
         // }
 
+        //What if someone asks you to do the above thing for 500 code? We will make a generic method as follows
         function clickHandler(color){
             // document.body.style.backgroundColor = `${color}`
 
+            // the following function have access to color because of lexical scoping and closur
             return function(){
                 document.body.style.backgroundColor = `${color}`
-            }
+            } //agr yh function return na krty or directly document.body likhty to it will create problem becz phir function directly execute hi ho jata. But .onclick wants a function not the execution
         }
 
         document.getElementById('orange').onclick = clickHandler("orange")
@@ -72,3 +126,139 @@
 
     </script>
 </html>
+
+
+<!-- //* must read it
+https://www.freecodecamp.org/news/javascript-lexical-scope-tutorial/
+
+JavaScript's scope chain determines the hierarchy of places the computer must go through — one after the other — to find the lexical scope (origin) of the specific variable that got called.
+
+
+Another name for lexical scope is static scope.
+The place an item got invoked (or called) is not necessarily the item's lexical scope. Instead, an item's definition space is its lexical scope.
+only code within an item's lexical scope can access it.-->
+
+
+<!-- **********Free Variables in JavaScript
+Free variables in JavaScript are variables that are used in a function but are neither local variables  nor parameters of that function. These variables are not bound within the function but are instead looked up in the scope chain. -->
+
+<!-- https://www.freecodecamp.org/news/lets-learn-javascript-closures-66feb44f6a44/ -->
+
+
+
+
+<!--
+
+### Closures in JavaScript
+
+**Closures** are a fundamental concept in JavaScript that allow a function to access variables from its outer (enclosing) scope even after the outer function has finished executing. In other words, a closure gives you access to an outer function's scope from an inner function.
+
+### How Closures Work
+
+When a function is created in JavaScript, it captures its lexical environment—the variables and functions that are in scope at the time of the function's creation. This captured environment is preserved even after the outer function has executed and returned.
+
+### Example of Closures
+
+```javascript
+function outerFunction() {
+    let outerVariable = 'I am outside!';
+
+    function innerFunction() {
+        console.log(outerVariable); // Can access outerVariable
+    }
+
+    return innerFunction;
+}
+
+const myInnerFunction = outerFunction();
+myInnerFunction(); // Output: 'I am outside!'
+```
+
+In this example:
+- `outerFunction` defines a variable `outerVariable` and an inner function `innerFunction`.
+- `innerFunction` references `outerVariable`.
+- `outerFunction` returns `innerFunction`.
+- When `myInnerFunction` is called, it still has access to `outerVariable` even though `outerFunction` has finished executing. This is because `innerFunction` forms a closure.
+
+### Practical Uses of Closures
+
+1. **Data Privacy**: Closures can be used to create private variables.
+2. **Function Factories**: Closures are useful for creating functions dynamically with shared environments.
+3. **Callbacks and Event Handlers**: Closures are commonly used in asynchronous programming, such as callbacks and event handlers.
+
+### Example of Data Privacy with Closures
+
+```javascript
+function createCounter() {
+    let count = 0;
+
+    return {
+        increment: function() {
+            count++;
+            return count;
+        },
+        decrement: function() {
+            count--;
+            return count;
+        },
+        getCount: function() {
+            return count;
+        }
+    };
+}
+
+const counter = createCounter();
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+console.log(counter.getCount());  // 2
+console.log(counter.decrement()); // 1
+```
+
+In this example:
+- `createCounter` creates a `count` variable and returns an object with methods that operate on `count`.
+- The `count` variable is private and can only be accessed and modified through the returned methods.
+
+### Behind the Scenes: How Closures Work
+
+#### Lexical Environment
+
+A **lexical environment** is the environment in which a function is created, consisting of any local variables and references to the outer environment.
+
+#### Creation Phase
+
+When a function is defined, a new lexical environment is created. This environment includes:
+- Local variables defined within the function.
+- References to the outer lexical environment.
+
+#### Execution Phase
+
+When the function is executed, it retains access to its lexical environment even if the outer function has finished execution.
+
+### Example with Multiple Closures
+
+```javascript
+function createMultiplier(multiplier) {
+    return function(value) {
+        return value * multiplier;
+    };
+}
+
+const double = createMultiplier(2);
+const triple = createMultiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+```
+
+In this example:
+- `createMultiplier` takes a `multiplier` argument and returns an inner function.
+- Each inner function forms a closure that captures its own `multiplier` value.
+- `double` and `triple` are functions that remember the multiplier values `2` and `3`, respectively.
+
+### Summary
+
+- **Closures** allow a function to access variables from its outer scope even after the outer function has returned.
+- Closures capture the lexical environment, preserving the scope chain at the time of function creation.
+- Practical uses of closures include data privacy, function factories, and handling asynchronous operations.
+
+Closures are a powerful feature in JavaScript, enabling more expressive and maintainable code by leveraging the function's ability to capture and retain its environment.-->

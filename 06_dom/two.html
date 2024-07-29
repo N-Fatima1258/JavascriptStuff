@@ -16,24 +16,39 @@
     </div>
 </body>
 <script>
-    const parent = document.querySelector('.parent')
-    // console.log(parent);
-    // console.log(parent.children);
-    // console.log(parent.children[1].innerHTML);
+     const parent = document.querySelector('.parent')
+    //  console.log(parent);
+    //  console.log(parent.children); // HTMLCOllection
+    //  console.log(parent.children[1].innerHTML);
 
     // for (let i = 0; i < parent.children.length; i++) {
-    //      console.log(parent.children[i].innerHTML);
+    //     console.log(parent.children[i].innerHTML);
         
     // }
-    parent.children[1].style.color = "orange"
-    // console.log(parent.firstElementChild);
-    // console.log(parent.lastElementChild);
+//   parent.children[1].style.color = "orange"
+//     console.log(parent.firstElementChild);
+//     console.log(parent.lastElementChild);
 
-    const dayOne = document.querySelector('.day')
+    // const dayOne = document.querySelector('.day')
     // console.log(dayOne);
     // console.log(dayOne.parentElement);
     // console.log(dayOne.nextElementSibling);
 
-    console.log("NODES: ", parent.childNodes);
+    console.log("NODES: ", parent.childNodes); //NodeLIst ,,, text: This is a text node, which includes the whitespace and newline characters before the comment.
 </script>
 </html>
+
+
+<!-- A NodeList is a collection of nodes in the DOM, indexable and iterable, and can be static or live depending on how it's created. It's commonly used to select and manipulate groups of DOM elements. -->
+
+<!-- Live vs. Static:
+
+A live NodeList is automatically updated when the underlying document changes (e.g., Node.childNodes).
+A static NodeList does not change if the document is updated (e.g., document.querySelectorAll). -->
+
+<!-- document.querySelectorAll returns a static NodeList of elements that match a specified CSS selector.
+
+Node.childNodes returns a live NodeList of all child nodes of a specified node, including elements, text, and comment nodes.  A line break is also counted in nodelist but only first one. All subsequent line breaks are ignored by browser
+
+Summary
+The NodeList contains a mixture of element nodes (<div class="day">), text nodes (whitespace and newlines), and a comment node. This output demonstrates how the browser parses and structures the HTML, including all whitespace and comments as nodes in the DOM tree.`-->

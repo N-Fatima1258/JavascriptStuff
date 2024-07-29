@@ -8,7 +8,6 @@
 // }
 
 const month = "march"
-
 switch (month) {
     case "jan":
         console.log("January");
@@ -27,3 +26,5 @@ switch (month) {
         console.log("default case match");
         break;
 }
+
+// IMPORTANT: suppose agr case march k bad break nhi lgaya to match bhi print ho jay ga or april bhi . In short us case k bad sary cases execute ho jayn gy except defaiult

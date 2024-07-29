@@ -14,9 +14,93 @@
     const sayDate = function(str){
         console.log(str, Date.now());
     }
+   
+    //setInterval also have a third parameter
+    let intervalId;
 
-    const intervalId = setInterval(sayDate, 1000, "hi")
+    document.querySelector("#start").addEventListener('click', ()=> {
+    intervalId = setInterval(sayDate, 1000, "hi")
+    })
+   
 
-    clearInterval(intervalId)
+    document.querySelector("#stop").addEventListener('click', ()=> {
+        clearInterval(intervalId)
+    })
+    
 </script>
 </html>
+
+
+<!-- 
+
+### `setInterval` with Additional Parameters
+
+The `setInterval` function can take additional arguments after the delay parameter. These additional arguments are passed to the callback function when it is executed.
+
+**Syntax:**
+
+```javascript
+setInterval(function, interval, param1, param2, ...);
+```
+
+- **function**: The function to be executed.
+- **interval**: The time in milliseconds between each execution.
+- **param1, param2, ...**: Additional parameters to pass to the function.
+
+**Example:**
+
+```javascript
+function sayDate(message) {
+  console.log(message + ": " + new Date());
+}
+
+setInterval(sayDate, 1000, "hi");
+```
+
+In this example, the `sayDate` function is executed every 1000 milliseconds (1 second) and it receives "hi" as its parameter each time.
+
+**Output:**
+
+```
+hi: [current date and time]
+hi: [current date and time]
+hi: [current date and time]
+...
+```
+
+### `setTimeout` with Additional Parameters
+
+Similarly, `setTimeout` can also take additional parameters after the delay parameter. These additional arguments are passed to the callback function when it is executed.
+
+**Syntax:**
+
+```javascript
+setTimeout(function, delay, param1, param2, ...);
+```
+
+- **function**: The function to be executed.
+- **delay**: The time in milliseconds after which the function is executed.
+- **param1, param2, ...**: Additional parameters to pass to the function.
+
+**Example:**
+
+```javascript
+function greet(name, message) {
+  console.log(message + ", " + name);
+}
+
+setTimeout(greet, 2000, "Alice", "Hello");
+```
+
+In this example, the `greet` function is executed after 2000 milliseconds (2 seconds) and it receives "Alice" and "Hello" as its parameters.
+
+**Output:**
+
+```
+Hello, Alice
+```
+
+### Summary
+
+- **`setInterval` and `setTimeout`** both support additional parameters that can be passed to the callback function.
+- These additional parameters are specified after the delay interval and are passed to the callback function when it is executed. -->

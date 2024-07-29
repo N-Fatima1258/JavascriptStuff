@@ -1,0 +1,93 @@
+<!-- The capturing phase, also known as the "trickling" phase, is one of the phases of event propagation in JavaScript. During this phase, the event starts from the root of the DOM tree and travels down to the target element. Here's a detailed breakdown of how the capturing phase works and how to use it:
+
+### How the Capturing Phase Works:
+
+1. **Starting Point**: The event begins at the root of the DOM tree. This is typically the `document` object.
+
+2. **Travel Downward**: The event travels through each element in the DOM tree from the root down to the target element. This traversal is known as the capturing phase.
+
+3. **Reaching the Target**: Once the event reaches the target element, the capturing phase ends, and the event enters the target phase.
+
+### Example:
+
+Consider the following HTML structure:
+
+```html -->
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="grandparent">
+    <div id="parent">
+      <button id="child">Click me</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('grandparent').addEventListener('click', function() {
+      console.log('Grandparent clicked - Capturing');
+    }, true);
+
+    document.getElementById('parent').addEventListener('click', function() {
+      console.log('Parent clicked - Capturing');
+    },true );
+
+    document.getElementById('child').addEventListener('click', function() {
+      console.log('Child clicked');
+    },true);
+  </script>
+</body>
+</html>
+
+<!-- 
+### Execution Flow:
+
+1. **Event Starts at Document**: When you click the button, the event starts at the `document` level.
+   
+2. **Event Propagates Through Ancestors**: The event travels down the DOM tree:
+   - It first hits the `grandparent` div.
+   - Then it travels to the `parent` div.
+   - Finally, it reaches the `child` button.
+
+3. **Triggering Event Handlers**:
+   - The `grandparent` element’s event listener (with `true` as the third argument) is triggered first, alerting "Grandparent clicked - Capturing".
+   - Next, the `parent` element’s event listener is triggered, alerting "Parent clicked - Capturing".
+
+4. **Reaching Target Phase**: After passing through all ancestors, the event reaches the `child` button, where the target phase begins.
+
+### Capturing Phase Details:
+
+- **Setting the Capturing Phase**: The third argument of `addEventListener` specifies whether the event listener should be added in the capturing phase. Set it to `true` to enable the capturing phase:
+
+  ```javascript
+  document.getElementById('element').addEventListener('click', function() {
+    // Event handler code
+  }, true);
+  ```
+
+- **Default Behavior**: If the third argument is `false` or omitted, the event listener is added in the bubbling phase by default.
+
+### Example Walkthrough:
+
+Here's a step-by-step walkthrough of the click event:
+
+1. **Click Event Triggered on `child`**: When you click the button:
+   - The event is initially on the `child` element.
+
+2. **Event Travels Up in the Capturing Phase**:
+   - From `child` to `parent`, and then to `grandparent`, triggering the respective event handlers:
+     - `grandparent`'s handler is called first.
+     - `parent`'s handler is called next.
+
+3. **Event Reaches Target Phase**:
+   - The event handler for the `child` element is called next, triggering the alert "Child clicked".
+
+### Summary:
+
+- **Capturing Phase**: Event travels from the root to the target element.
+- **Enable Capturing**: Use the third argument of `addEventListener` with `true`.
+- **Order of Execution**:
+  1. Root to Target: Capturing Phase.
+  2. Target Element: Target Phase.
+  3. Target to Root: Bubbling Phase (if not stopped).
+
+This detailed understanding of the capturing phase helps in managing event handling more effectively, especially when dealing with complex DOM structures and multiple event listeners. -->

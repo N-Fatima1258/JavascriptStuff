@@ -25,3 +25,13 @@
     })
 </script>
 </html>
+
+<!-- setInterval, setTimeout are not core js functions. As we see when we call them they go out from th js engine and we can then accesss them through Queue. We get them through browser(see in the window object) 
+ clearInterval , clearTimeout
+
+
+ setInterval => continously given time k bad execute krta jata hai
+ setTimeout => executes the given function only once after a given time
+ clearTimeout => * remove the setTimeout from the Queue. Agr setTimeout execute hony se pehly humny cleartimeout call kr dia to settimeout kbhi bhi execute nhi hoga Becz it is then removed from the Queue. 
+  * In this example, after the execution of setTimeout, if i press the stop button , only console.log(stopped) is executed. Cleartimeout will have no effect
+-->

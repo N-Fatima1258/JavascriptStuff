@@ -1,0 +1,71 @@
+<!-- Event propagation is the way events travel through the DOM (Document Object Model) tree when an event is triggered. In JavaScript, there are three phases of event propagation:
+
+Capturing Phase (Capture Phase):
+
+The event starts from the root of the document and travels down to the target element. This phase is also known as the "trickling" phase.
+Target Phase:
+
+The event reaches the target element where it was originally triggered.
+Bubbling Phase:
+
+After reaching the target element, the event bubbles back up to the root, passing through all the ancestor elements. This phase is known as the "bubbling" phase. -->
+
+<!-- Event Bubbling
+Event bubbling specifically refers to the phase where the event propagates from the target element up through its ancestors.
+
+In the context of the DOM (Document Object Model), an "ancestor" refers to any element that is a parent, grandparent, great-grandparent, and so on, of a given element. Essentially, ancestors are the elements that are higher up in the DOM tree hierarchy relative to a specific element.
+
+```
+
+In this example:
+- The `button` element with id `child` has:
+  - `div` with id `parent` as its direct parent.
+  - `div` with id `grandparent` as its grandparent.
+
+When you click the `button` (the target element):
+1. The event is first handled by the `button` itself.
+2. Then the event bubbles up to its parent, the `div` with id `parent`.
+3. Finally, the event bubbles up to its grandparent, the `div` with id `grandparent`.
+
+So, in terms of ancestors:
+- The `parent` div is an ancestor of the `child` button.
+- The `grandparent` div is also an ancestor of the `child` button, but it is one level higher in the DOM hierarchy.
+
+When we talk about event bubbling, we mean that the event travels up through all these ancestor elements, starting from the direct parent and moving up the DOM tree until it reaches the root element (`html` or `document`).
+
+Here’s a visual representation:
+
+
+In this DOM structure:
+- `child` has two ancestors: `parent` and `grandparent`.
+- When the button is clicked, the event first triggers on the `child`, then bubbles up to `parent`, and then to `grandparent`.-->
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="grandparent">
+    <div id="parent">
+      <button id="child">Click me</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('grandparent').addEventListener('click', function() {
+      console.log('Grandparent clicked');
+    },false);
+
+    document.getElementById('parent').addEventListener('click', function(e) {
+      console.log('Parent clicked');
+     
+    },false);
+
+    document.getElementById('child').addEventListener('click', function(e) {
+      console.log('Child clicked');
+      e.stopPropagation();
+    },false);  //by default, there is false
+  </script>
+</body>
+</html>
+<!-- Stopping Propagation
+You can stop the propagation of an event using the stopPropagation method. This prevents the event from reaching any other elements.In this example:
+
+When you click on the button with id child, only the "Child clicked" alert is shown. The event does not bubble up to the parent element because stopPropagation is called. -->

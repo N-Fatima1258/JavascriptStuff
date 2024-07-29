@@ -12,15 +12,30 @@
 <script>
     const div = document.createElement('div')
     console.log(div);
+    //set class name
     div.className = "main"
+    //set ID
     div.id = Math.round(Math.random() * 10 + 1)
+    //set attribute named title. Attribute name is title and its value is "generated title"
     div.setAttribute("title", "generated title")
     div.style.backgroundColor = "green"
     div.style.padding = "12px"
     // div.innerText = "Chai aur code"
+    // create text node
     const addText = document.createTextNode("Chai aur code")
+    // attach that text node
     div.appendChild(addText)
-
+    // now finally attach it with the document
     document.body.appendChild(div)
 </script>
-</html>
+</html> 
+<!-- People usually prefer setAttribute because yh value ko pehly ly k nhi ata, yh directly wahan py value set krta hai. To aik round trip bchta hai.
+
+ .classNAme, .innerText => they both overwrite. Jo bhi values wahan pr hei usko select kr k lata hai pehly or phir values ko agr ap set kr rhy hei to set krta 
+ 
+
+ ****************
+ innerText => pehly values ka reference ly k ay ga or phir usk bad overwrite kry ga ......  Thats why some people prefer const addText = document.createTextNode("Chai aur code")
+    // attach that text node
+    div.appendChild(addText)
+ instead of div.innerText = "Chai aur code">

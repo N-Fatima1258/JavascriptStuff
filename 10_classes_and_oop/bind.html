@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React</title>
 </head>
-<body>
+<body> 
     <button>Button Clicked</button>
 </body>
 <script>
@@ -22,6 +22,7 @@
         }
         handleClick(){
             console.log("button clicked");
+            console.log(this)
             console.log(this.server);
         }
     }
@@ -29,3 +30,16 @@
     const app = new React()
 </script>
 </html>
+
+<!-- this => jis ny call kia -->
+<!--  
+The bind keyword in JavaScript is used to create a new function that, when called, has its this keyword set to a specified value. This is particularly useful when working with event handlers in classes, as it ensures that the correct context (this) is maintained. -->
+
+<!-- Without bind
+If you didn't use bind, this inside handleClick would refer to the element that triggered the event (the button), leading to undefined or incorrect behavior.
+            console.log(this.server); => undefined
+-->
+
+<!-- Using bind:
+this.handleClick.bind(this) creates a new function with this bound to the current instance of the React class. 
+This ensures that inside handleClick, this refers to the instance of the React class, not to the button element or the global object.-->

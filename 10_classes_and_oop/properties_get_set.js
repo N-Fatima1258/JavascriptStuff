@@ -1,3 +1,5 @@
+
+//Method 2: getter and setter without using classes
 function User(email, password){
     this._email = email;
     this._password = password
@@ -24,3 +26,5 @@ function User(email, password){
 const chai = new User("chai@chai.com", "chai")
 
 console.log(chai.email);
+
+//Object.defineProperty: This method is used to define new properties directly on an object, or modify existing properties. 

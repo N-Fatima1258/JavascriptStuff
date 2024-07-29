@@ -19,32 +19,73 @@
    </div>
 </body>
 <script>
+
     // document.getElementById('owl').onclick = function(){
     //     alert("owl clicked")
     // }
 
-     // attachEvent()
-    // jQuery - on
+    
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("clicked inside the ul");
+    }, false)
 
+
+
+    document.getElementById('owl').addEventListener('click', function(e){
+            // console.log(e);
+        console.log("owl clicked");
+        // e.stopPropagation()
+    }, false)
+    
+
+  // ++++++++ Event propagation +++++++++++++++
+// ***Bubbling up =>bubble nichy se oper jata hai. inner element (images) py click kia then li then UI
+// jo bhi apki script track kr rhi hai bry elemnt ko, inside se outside to wo hota hai event propagation and this is called bubbling
+    
+// ** Capturing: top se bottom tk => ul is captured first
+
+    
+
+// document.getElementById('owl').addEventListener('click', function(e){
+//         console.log("owl clicked");
+//          e.stopPropagation()  // Event bubbe ho k oper k element py nhi jay ga
+//     }, false)
+
+
+
+
+
+
+
+
+
+
+     // attachEvent() => used in early times. When internet Explorer was used
+
+    // jQuery (JS libraray) => yahan addEventListener likhty hei lykin jQuery mai .on lga kr kam chl jata tha 
+
+
+
+
+
+
+    // in interview, many qs are asked about this e(of addEventListener) about view, timestamp
     // type, timestamp, defaultPrevented
     // target, toElement, srcElement, currentTarget,
     // clientX, clientY, screenX, screenY
     // altkey, ctrlkey, shiftkey, keyCode
 
-    // document.getElementById('images').addEventListener('click', function(e){
-    //     console.log("clicked inside the ul");
-    // }, false)
 
-    // document.getElementById('owl').addEventListener('click', function(e){
-    //     console.log("owl clicked");
-    //     e.stopPropagation()
-    // }, false)
+
+
     
-    // document.getElementById('google').addEventListener('click',function(e){
-    //     e.preventDefault();
-    //     e.stopPropagation()
-    //     console.log("google clicked");
-    // }, false)
+    document.getElementById('google').addEventListener('click',function(e){
+        e.preventDefault();
+        e.stopPropagation()
+        console.log("google clicked");
+    }, false)
+
+    // e.preventDefault() is a method used in JavaScript to prevent the default action associated with an event from occurring, such as submitting a form, following a link, or performing a default browser action.
    
     
     document.querySelector('#images').addEventListener('click', function(e){
@@ -53,11 +94,169 @@
             console.log(e.target.id);
             let removeIt = e.target.parentNode
             removeIt.remove()
-        }
-    
-        
+        }     
+        //*Other method : removeIt.parentNode.removeChild(removeIt)
     })
     
-    //removeIt.parentNode.removeChild(removeIt)
+    
 </script>
 </html>
+
+
+
+<!-- Browser events: They invoke you to perform an activity. Esa nhi hai k bs file mai likh dia to code execute ho gaya -->
+
+
+
+<!--
+ ******************** Basic Concept ********************
+
+JavaScript is primarily a single-threaded, synchronous language, which means that it executes code sequentially, one statement at a time, in the order it is written. However, JavaScript is also event-driven and can handle asynchronous operations using mechanisms like callbacks, promises, and async/await. Here's a breakdown:
+
+1. **Synchronous Execution**: By default, JavaScript executes code sequentially. Each line of code is run one after the other.
+
+2. **Asynchronous Operations**: JavaScript can perform certain tasks asynchronously, allowing the main thread to continue running other code while waiting for operations to complete. Examples of asynchronous operations include:
+   - **setTimeout and setInterval**: These functions allow you to schedule code to run after a specified delay or at regular intervals.
+   - **Promises**: Promises represent the eventual completion (or failure) of an asynchronous operation and its resulting value.
+   - **async/await**: These keywords provide a more readable way to work with promises and write asynchronous code that looks synchronous.
+
+3. **Event Loop**: The event loop is a core part of JavaScript's concurrency model. It allows JavaScript to perform non-blocking I/O operations, despite being single-threaded. The event loop handles events and asynchronous callbacks by maintaining a queue of tasks. When the main thread is free, the event loop picks up tasks from the queue and executes them.
+
+Here's a simple example to illustrate synchronous and asynchronous behavior in JavaScript:
+
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Inside setTimeout");
+}, 1000);
+
+console.log("End");
+```
+
+Output:
+```
+Start
+End
+Inside setTimeout
+```
+
+In this example:
+- "Start" is printed first.
+- "End" is printed next because `setTimeout` schedules the callback to run after 1000 milliseconds (1 second), allowing the main thread to continue executing the remaining code.
+- "Inside setTimeout" is printed after the delay, once the event loop picks up the callback from the queue.
+
+In summary, while JavaScript runs code sequentially in a synchronous manner by default, it can handle asynchronous operations using various mechanisms, with the event loop ensuring that these operations do not block the main thread. 
+
+
+
+
+
+**** What is the Event Loop? The event loop is what allows Node.js to perform non-blocking I/O operations — despite the fact that a single JavaScript thread is used by default — by offloading operations to the system kernel whenever possible.-->
+
+
+
+
+<!-- ************
+
+* We donot get Js engine alone. It always comes with a runtime environment (either the run time environment of browser or it could be nodejs)
+ 
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+++++++++++++++++++++++++++++++++++++++++++++++
+
+ Both `onclick` and `addEventListener` are used to handle events in JavaScript, but they have some key differences:
+
+### 1. **`onclick` Property:**
+
+```javascript
+document.getElementById('owl').onclick = function(){
+    alert("owl clicked");
+}
+```
+
+- **Single Event Handler**: Setting the `onclick` property will assign a single event handler to the element. If you assign another function to `onclick`, it will overwrite the previous one.
+- **Simpler Syntax**: The syntax is straightforward and easy to use for basic event handling.
+
+### 2. **`addEventListener` Method:**
+
+```javascript
+document.getElementById('owl').addEventListener('click', function(e){
+    alert("owl clicked");
+});
+```
+
+- **Multiple Event Handlers**: You can add multiple event listeners for the same event type on a single element. This allows you to have multiple functions respond to the same event without overwriting each other.
+- **More Control**: `addEventListener` provides more control over the event handling, such as specifying whether the event should be captured or bubbled, and the ability to remove event listeners using `removeEventListener`.
+- **Standardized**: It is the recommended approach as it conforms to the DOM Level 2 Events specification and is more versatile.
+
+### Key Differences:
+
+1. **Multiple Handlers**:
+   - **`onclick`**: Only one function can be assigned. If you set it again, it replaces the previous function.
+   - **`addEventListener`**: Allows multiple functions to be assigned to the same event.
+
+   ```javascript
+   document.getElementById('owl').onclick = function() {
+       alert("First handler");
+   };
+   document.getElementById('owl').onclick = function() {
+       alert("Second handler");
+   };
+   // Only "Second handler" will be alerted.
+   ```
+
+   ```javascript
+   document.getElementById('owl').addEventListener('click', function() {
+       alert("First handler");
+   });
+   document.getElementById('owl').addEventListener('click', function() {
+       alert("Second handler");
+   });
+   // Both "First handler" and "Second handler" will be alerted.
+   ```
+
+2. **Event Options**:
+   - **`onclick`**: Limited control over the event's behavior.
+   - **`addEventListener`**: Can specify options such as `capture`, `once`, and `passive`.
+
+   ```javascript
+   document.getElementById('owl').addEventListener('click', function() {
+       alert("This will only run once");
+   }, { once: true });
+   ```
+
+3. **Removing Handlers**:
+   - **`onclick`**: To remove the handler, you can set it to `null`.
+   - **`addEventListener`**: Use `removeEventListener` to remove specific handlers.
+
+   ```javascript
+   function handleClick() {
+       alert("owl clicked");
+   }
+   document.getElementById('owl').addEventListener('click', handleClick);
+   // To remove the handler
+   document.getElementById('owl').removeEventListener('click', handleClick);
+   ```
+
+### Conclusion
+
+For simple scenarios where only one event handler is needed, `onclick` might suffice. For more complex scenarios requiring multiple handlers or more control over the event, `addEventListener` is the preferred and more flexible approach. -->

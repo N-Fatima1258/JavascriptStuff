@@ -12,6 +12,7 @@
     </ul>
 </body>
 <script>
+    // in the following method, because you have to append at the end, the tree needs to be traversed every time => optimization issue
     function addLanguage(langName){
         const li = document.createElement('li');
         li.innerHTML = `${langName}`
@@ -19,7 +20,8 @@
     }
     addLanguage("python")
     addLanguage("typescript")
-
+ 
+    // optimized way
     function addOptiLanguage(langName){
         const li = document.createElement('li');
         li.appendChild(document.createTextNode(langName))
@@ -27,7 +29,9 @@
     }
     addOptiLanguage('golang')
 
-    //Edit
+
+
+    // ***** Edit
     const secondLang = document.querySelector("li:nth-child(2)")
     console.log(secondLang);
     //secondLang.innerHTML = "Mojo"
@@ -35,14 +39,18 @@
     newli.textContent = "Mojo"
     secondLang.replaceWith(newli)
 
-    //edit
+    //*******edit
     const firstLang = document.querySelector("li:first-child")
-    firstLang.outerHTML = '<li>TypeScript</li>'
+     firstLang.outerHTML = '<li>TypeScript</li>'
+    // firstLang.innerHTML= "Django"
 
-    //remove
-    const lastLang = document.querySelector('li:last-child')
-    lastLang.remove()
+    //*******remove
+    // const lastLang = document.querySelector('li:last-child')
+    // lastLang.remove()
 
 
 </script>
 </html>
+
+
+<!--  donot run after innerHTML -->
